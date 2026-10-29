@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Dark background matching all other pages */
+
+
+
+
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .square {
+            width: 600px;
+            height: 600px;
+
+            background-image: url("HPI.PNG");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            position: relative;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Matching depth shadow */
+            border-radius: 8px;
+        }
+
+        .game-button {
+            position: absolute;
+
+            padding: 8px 15px;
+
+            background-color: #fff3d6;
+            border: 3px solid #3b2518;
+            border-radius: 8px;
+
+            color: #1f1712;
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+            font-size: 23px;
+            font-weight: bold;
+
+            box-shadow: 2px 3px 0px #6b4a32;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .recipe-button {
+            left: 65%;
+            top: 65%;
+        }
+
+        .contact-button {
+            left: 13%;
+            top: 65%;
+        }
+
+        .game-button:hover {
+            background-color: #f5d9a6;
+            transform: scale(1.03);
+        }
+
+        .game-button:active {
+            transform: scale(0.98);
+        }
+
+    </style>
+
+</head>
+
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+
+    <div class="square">
+
+        <a href="Recipe Page.html" class="game-button recipe-button">
+            ابدأ اللعبة
+        </a>
+
+        <a href="Comment Section.html" class="game-button contact-button">
+            معلومات التواصل
+        </a>
+
+    </div>
+<script>
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+</script>
+</body>
+
+</html>

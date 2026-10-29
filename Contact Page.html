@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>معلومات التواصل</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Changed from plain white to matching dark game background */
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        } 
+
+        .square {
+            width: 600px;
+            height: 600px;
+
+            background-image: url("RPI.PNG");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            position: relative;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Adds shadow matching the main game frame */
+            border-radius: 8px;
+        }
+
+        /* TITLE */
+        .title {
+            position: absolute;
+            top: 45px;
+            right: 45px;
+            width: 300px;
+            height: auto;
+        }
+
+        /* CONTACT BOXES */
+        .contact-box {
+            position: absolute;
+            left: 40px;
+            width: 295px;
+            height: 61px;
+            background-color: #ddc0a9;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #1b0b05;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .box1 { top: 200px; }
+        
+        .box3 { top: 300px; }
+
+        /* ICONS */
+        .icon {
+            position: absolute;
+            right: 38px;
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .icon1 { top: 190px; }
+        
+        .icon3 { top: 290px; }
+    </style>
+</head>
+
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+<div class="square">
+    <!-- TITLE -->
+    <img src="contact info .png" class="title" alt="عنوان معلومات التواصل">
+
+    
+<!-- CONTACT BOXES -->
+<a href="https://www.instagram.com/family_syrian_recipes/"
+   class="contact-box box1"
+   target="_blank"
+   rel="noopener noreferrer">
+    Instagram: @family_syrian_recipes
+</a>
+
+<a href="mailto:acallforliterature@gmail.com"
+   class="contact-box box3">
+    acallforliterature@gmail.com
+</a>
+
+
+    
+<!-- ICONS -->
+<a href="https://www.instagram.com/family_syrian_recipes/"
+   target="_blank"
+   rel="noopener noreferrer">
+    <img src="instagram icon.png"
+         class="icon icon1"
+         alt="Instagram">
+</a>
+
+<a href="mailto:acallforliterature@gmail.com">
+    <img src="gmail icon.png"
+         class="icon icon3"
+         alt="Gmail">
+</a>
+
+<script>
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+</script>
+</body>
+</html>

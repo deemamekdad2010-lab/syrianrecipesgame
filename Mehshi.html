@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mahashi Game - محاشي</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+        }
+
+
+        /* =========================
+           MAIN GAME CONTAINER
+        ========================= */
+
+        #game-container {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           BACKGROUND LAYER
+        ========================= */
+
+        #bg-image {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            left: 0;
+            top: 0;
+
+            object-fit: cover;
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           TABLE BACKGROUND LAYER
+        ========================= */
+
+        #table-bg {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            left: 0;
+            top: 0;
+
+            object-fit: cover;
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           GAME AREA
+        ========================= */
+
+        #play-area {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            left: 0;
+            top: 0;
+
+            z-index: 10;
+        }
+
+
+        /* =========================
+           UI LAYER
+        ========================= */
+
+        #ui-layer {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            left: 0;
+            top: 0;
+
+            z-index: 100;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           UI BUTTONS
+        ========================= */
+
+        .ui-btn {
+            pointer-events: auto;
+
+            position: absolute;
+
+            text-decoration: none;
+        }
+
+
+        .top-left-btn {
+            left: 25px;
+            top: 25px;
+        }
+
+
+        .bottom-right-btn {
+            right: 25px;
+            bottom: 25px;
+        }
+
+
+        /* =========================
+           MAIN TITLE
+        ========================= */
+
+        .main-title {
+    position: absolute;
+    top: 15px;
+    left: 83%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 110;
+    pointer-events: none;
+
+    font-size: 58px;
+    font-weight: bold;
+    color: #3b1b08;
+
+    text-shadow:
+        2px 2px 0 #fff4d6,
+        -2px -2px 0 #fff4d6;
+}
+
+
+        /* =========================
+           RECIPE SCROLL
+        ========================= */
+
+        .scroll-container {
+            position: absolute;
+
+            left: 25px;
+            bottom: 25px;
+
+            width: 180px;
+            max-height: 250px;
+
+            overflow: hidden;
+
+            pointer-events: auto;
+        }
+
+
+        .scroll-content {
+            padding: 15px;
+        }
+
+
+        /* =========================
+           HIDDEN UI
+        ========================= */
+
+        .hidden-ui {
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 0.3s ease;
+        }
+
+
+        /* =========================
+           VISIBLE UI
+        ========================= */
+
+        .visible-ui {
+            opacity: 1;
+
+            transition: opacity 0.3s ease;
+        }
+
+
+        /* =========================
+           GAME OBJECTS
+        ========================= */
+
+        .game-object,
+        .ingredient,
+        .draggable {
+            position: absolute;
+        }
+
+
+        /* =========================
+           HIDDEN
+        ========================= */
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+
+    <!-- =========================
+         MAIN GAME CONTAINER
+    ========================= -->
+
+    <div id="game-container">
+
+
+        <!-- =========================
+             BASE BACKGROUND
+        ========================= -->
+
+        <img
+            id="bg-image"
+            src="RPI.PNG"
+            alt="Mahashi Game Setup"
+        >
+
+
+        <!-- =========================
+             TABLE LAYER
+        ========================= -->
+
+        <img
+            id="table-bg"
+            src="table-bg.png"
+            alt="Table"
+        >
+
+
+        <!-- =========================
+             ACTUAL GAME AREA
+        ========================= -->
+
+        <div id="play-area">
+
+
+            <!-- STEP 1 -->
+
+            <img
+                id="eggplant"
+                class="game-object"
+                src="eggplant.png"
+                alt="Eggplant"
+            >
+
+
+            <img
+                id="knife"
+                class="game-object hidden"
+                src="knife.png"
+                alt="Knife"
+            >
+
+
+            <!-- STEP 2 -->
+
+            <img
+                id="bowl"
+                class="game-object hidden"
+                src="bowl.png"
+                alt="Bowl"
+            >
+
+
+            <img
+                id="rice"
+                class="ingredient draggable hidden"
+                src="rice.png"
+                alt="Rice"
+            >
+
+
+            <img
+                id="meat"
+                class="ingredient draggable hidden"
+                src="meat.png"
+                alt="Meat"
+            >
+
+
+            <img
+                id="mixed-filling"
+                class="game-object hidden"
+                src="mixed-filling.png"
+                alt="Mixed filling"
+            >
+
+
+            <img
+                id="spoon"
+                class="game-object hidden"
+                src="spoon.png"
+                alt="Spoon"
+            >
+
+
+            <!-- STEP 3 -->
+
+            <img
+                id="stuffing-eggplant"
+                class="game-object hidden"
+                src="eggplant-open.png"
+                alt="Open eggplant"
+            >
+
+
+            <img
+                id="stuffing"
+                class="draggable hidden"
+                src="mixed-filling.png"
+                alt="Filling"
+            >
+
+
+            <!-- STEP 4 -->
+
+            <img
+                id="pan"
+                class="game-object hidden"
+                src="pan.png"
+                alt="Pan"
+            >
+
+
+            <div
+                id="pan-drop-zone"
+                class="hidden"
+            ></div>
+
+
+            <div id="stuffed-count"></div>
+
+
+            <!-- STEP 5 -->
+
+            <img
+                id="stove"
+                class="game-object hidden"
+                src="stove.png"
+                alt="Stove"
+            >
+
+
+            <button
+                id="start-cooking"
+                class="hidden"
+            >
+                ابدأ الطبخ
+            </button>
+
+
+            <!-- FINAL RESULT -->
+
+            <img
+                id="finished-mahshi"
+                class="game-object hidden"
+                src="finished-mahshi.png"
+                alt="Finished Mahshi"
+            >
+
+
+            <!-- SUCCESS SCREEN -->
+
+            <div
+                id="success-screen"
+                class="hidden"
+            >
+
+                <div class="success-glow">
+
+                    <div class="sparkle">
+                        ✦
+                    </div>
+
+
+                    <h1>
+                        أحسنت!
+                    </h1>
+
+
+                    <h2>
+                        لقد أتقنت هذه الوصفة ✨
+                    </h2>
+
+
+                    <div class="sparkles">
+                        ✦　✧　✦　✧　✦
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             UI OVERLAY
+        ========================= -->
+
+        <div id="ui-layer">
+
+
+            <!-- CONTACT BUTTON -->
+
+            <a
+                href="Comment Section.html"
+                class="ui-btn top-left-btn"
+            >
+                <span>
+                    معلومات التواصل
+                </span>
+            </a>
+
+
+            <!-- TITLE -->
+
+            <h1 class="main-title">
+                محاشي
+            </h1>
+
+
+            <!-- RECIPE SCROLL -->
+
+            <div class="scroll-container">
+
+                <div class="scroll-content">
+
+
+                    <p>
+                        ١. افتح داخل الباذنجان.
+                    </p>
+
+                    <p>
+                        ٢. اخلط الأرز واللحم معًا.
+                    </p>
+
+                    <p>
+                        ٣. احشو الباذنجان بخليط الأرز واللحم.
+                    </p>
+
+                    <p>
+                        ٤. ضع الباذنجان المحشو في القدر بجانب حبات المحاشي الأخرى.
+                    </p>
+
+                    <p>
+                        ٥. ضع القدر على النار واتركه يطهى على نار هادئة لمدة ٦٠ دقيقة.
+                    </p>
+
+                    <p>
+                        ٦. والآن... المحاشي جاهزة!
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SELECT RECIPE -->
+
+            <a
+                href="Recipe Page.html"
+                class="ui-btn bottom-right-btn"
+            >
+                <span>
+                    اختر وصفة
+                </span>
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
+<script>
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+</script>
+</body>
+
+</html>

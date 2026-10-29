@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Recipe Page</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .square {
+            width: 600px;
+            height: 600px;
+            background-image: url("RPI.PNG");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+        }
+
+        /* TITLE */
+
+        .title {
+            position: absolute;
+            top: 45px;
+            right: 80px;
+            font-size: 45px;
+            font-weight: normal;
+        }
+
+        /* CONTACT BUTTON */
+
+        .contact-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            padding: 8px 15px;
+            background-color: #fff3d6;
+            border: 3px solid #3b2518;
+            border-radius: 8px;
+            color: #1f1712;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 2px 3px 0px #6b4a32;
+            transition: transform 0.1s ease;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.03);
+        }
+
+        /* FOOD IMAGES */
+
+        .food {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+
+        .food:hover {
+            transform: scale(1.08);
+        }
+
+        .mehshi {
+            left: 45px;
+            top: 190px;
+        }
+
+        .sheshbarak {
+            left: 250px;
+            top: 190px;
+        }
+
+        .warakenab {
+            left: 455px;
+            top: 190px;
+        }
+
+        /* RECIPE BOXES */
+
+        .recipe-box {
+            position: absolute;
+            width: 105px;
+            height: 240px;
+            border: 2px solid #b85f45;
+            border-radius: 6px;
+
+            /* TEXT SETTINGS */
+            padding: 10px;
+            direction: rtl;
+            text-align: right;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            line-height: 1.6;
+
+            /* Keeps long explanations inside the box */
+            overflow-y: auto;
+
+            /* Makes the scrollbar less distracting */
+            scrollbar-width: thin;
+        }
+
+        .box1 {
+            left: 42px;
+            top: 300px;
+        }
+
+        .box2 {
+            left: 247px;
+            top: 300px;
+        }
+
+        .box3 {
+            left: 452px;
+            top: 300px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+    <div class="square">
+
+        <h1 class="title">اختر وصفة</h1>
+
+        <!-- CONTACT -->
+
+        <a href="Comment Section.html" class="contact-button">
+            معلومات التواصل
+        </a>
+
+
+        <!-- FOOD IMAGES -->
+
+        <a href="Mehshi.html">
+            <img src="Mehshi.png" class="food mehshi" alt="محشي">
+        </a>
+
+        <a href="Shesh Barak.html">
+            <img src="Shesh Barak.png" class="food sheshbarak" alt="شيش برك">
+        </a>
+
+        <a href="Warak Enab.html">
+            <img src="Warak Enab.png" class="food warakenab" alt="ورق عنب">
+        </a>
+
+
+        <!-- RECIPE BOXES -->
+
+        <!-- ========================= -->
+        <!--       MEHSHI EXPLANATION  -->
+        <!-- ========================= -->
+
+        <div class="recipe-box box1">
+
+            <!-- WRITE YOUR MEHSHI EXPLANATION HERE -->
+
+            <p>
+               تُعد "الكوسا محشي" طبقاً شرق أوسطياً كلاسيكياً يتكون من ثمار الكوسا المفرغة من اللب والمحشوة بخليط من اللحم المفروم المتبل والأرز، حيث تُطهى جميعها على نار هادئة في صلصة طماطم غنية بالنكهة والثوم. 
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!--    SHESH BARAK EXPLANATION -->
+        <!-- ========================= -->
+
+        <div class="recipe-box box2">
+
+            <!-- WRITE YOUR SHESH BARAK EXPLANATION HERE -->
+
+            <p>
+               الشيش برك هي  عبارة عن العجين المحشوة باللحم والمطبوخة في صلصة اللبن التي لا تُقاوم، وتستحق بجدارة كل دقيقة تُقضى في تحضيرها لأنها من أكثر الأطعمة المحبوبة في سوريا. 
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!--   WARAK ENAB EXPLANATION  -->
+        <!-- ========================= -->
+
+        <div class="recipe-box box3">
+
+            <!-- WRITE YOUR WARAK ENAB EXPLANATION HERE -->
+
+            <p>
+                في هذه الوصفة، تُحشى أوراق العنب بخليط من الأرز واللحم المفروم والتوابل، وتُطهى في مرق الدجاج بنكهة الليمون وكمية وفيرة من زيت الزيتون حتى تصبح طرية؛ فتمنحك كل لقمة مزيجاً شهياً من الأرز واللحم الطريين بنكهة الليمون، مع أوراق عنب التي تكاد تذوب في الفم.
+            </p>
+
+        </div>
+
+    </div>
+<script>
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+</script>
+</body>
+
+</html>

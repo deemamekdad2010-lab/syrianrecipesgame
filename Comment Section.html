@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Matches the dark background from the game and contact pages */
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .square {
+            width: 600px;
+            height: 600px;
+
+            background-image: url("RPI.PNG");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            position: relative;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Adds frame depth */
+            border-radius: 8px;
+        }
+
+        /* TITLE */
+        .title {
+            position: absolute;
+            top: 45px;
+            right: 80px;
+            font-size: 45px;
+            font-weight: normal;
+        }
+        .comments-box {
+    position: absolute;
+    top: 115px;
+    right: 55px;
+    width: 490px;
+    height: 420px;
+
+    padding: 10px;
+
+    font-family: Arial, sans-serif;
+
+    overflow-y: auto;
+}
+    
+.comment-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#commentInput {
+    flex: 1;
+    height: 60px;
+
+    resize: none;
+
+    border: 3px solid black;
+    border-radius: 10px;
+
+    background: #FFFBF0;
+
+    padding: 10px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+#postComment {
+    width: 70px;
+
+    border: 3px solid black;
+    border-radius: 10px;
+
+    background: #FFFBF0;
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment {
+    background: linear-gradient(
+        to bottom,
+        #FFFBF0,
+        #eadfc9
+    );
+
+    border: 4px solid black;
+
+    clip-path: polygon(
+        8px 0,
+        calc(100% - 8px) 0,
+        calc(100% - 8px) 4px,
+        calc(100% - 4px) 4px,
+        calc(100% - 4px) 8px,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 4px) calc(100% - 8px),
+        calc(100% - 4px) calc(100% - 4px),
+        calc(100% - 8px) calc(100% - 4px),
+        8px calc(100% - 4px),
+        8px calc(100% - 8px),
+        4px calc(100% - 8px),
+        4px 100%,
+        0 100%,
+        0 8px,
+        4px 8px,
+        4px 4px,
+        8px 4px
+    );
+}
+
+.contact-button {
+    position: absolute;
+
+    bottom: 30px;
+    right: 230px;
+
+    padding: 8px 20px;
+
+    border: 3px solid black;
+    border-radius: 10px;
+
+    background: #C68E59;
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+.recipe-button {
+    position: absolute;
+
+    top: 30px;
+    right: 450px;
+
+    padding: 8px 20px;
+
+    border: 3px solid black;
+    border-radius: 10px;
+
+    background: #FFFBF0;
+
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+     
+        
+    </style>
+
+</head>
+
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+ <div class="square">
+
+    <h1 class="title">شارك تجربتك</h1>
+
+    <div class="comments-box">
+
+        <div class="comment-input">
+
+            <textarea
+                id="commentInput"
+                placeholder="Write your comment..."
+            ></textarea>
+
+            <button id="postComment">علق</button>
+
+        </div>
+
+        <div id="commentList"></div>
+
+    </div>
+
+   <a href="Contact Page.html" class="contact-button">
+    معلومات التواصل
+</a>
+<a href="Recipe Page.html" class="recipe-button">
+    اختر وصفة
+</a>
+
+</div>
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+    import {
+        getFirestore,
+        collection,
+        addDoc,
+        serverTimestamp,
+        onSnapshot
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBRCBVtT3T7gQvdPSIY-6Ehm6dUfjFQNU",
+        authDomain: "game-50fee.firebaseapp.com",
+        projectId: "game-50fee",
+        storageBucket: "game-50fee.firebasestorage.app",
+        messagingSenderId: "649947266772",
+        appId: "1:649947266772:web:b99a23a55e35d250f64541",
+        measurementId: "G-7E56KER0GV"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+    const commentInput = document.getElementById("commentInput");
+    const postComment = document.getElementById("postComment");
+    const commentList = document.getElementById("commentList");
+
+
+    postComment.addEventListener("click", async () => {
+
+        const text = commentInput.value.trim();
+
+        if (text === "") {
+            return;
+        }
+
+        if (text.length > 500) {
+            alert("Your comment is too long!");
+            return;
+        }
+
+        try {
+
+            await addDoc(collection(db, "comments"), {
+                text: text,
+                timestamp: serverTimestamp()
+            });
+
+            commentInput.value = "";
+
+        } catch (error) {
+
+            console.error("Error adding comment:", error);
+
+            alert("Something went wrong. Please try again.");
+
+        }
+
+    });
+
+
+    onSnapshot(collection(db, "comments"), (snapshot) => {
+
+        commentList.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+
+            const commentData = doc.data();
+
+            const comment = document.createElement("div");
+
+            comment.className = "comment";
+
+            comment.textContent = commentData.text || "";
+
+            commentList.appendChild(comment);
+
+        });
+
+    });
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+
+</script>
+</body>
+
+</html>
