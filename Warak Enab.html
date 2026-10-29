@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Warak Enab Game - ورق عنب</title>
+
+    <link rel="stylesheet" href="warak enab style.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #game-container {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .main-title {
+            position: absolute;
+            top: 15px;
+            left: 82%;
+            transform: translateX(-50%);
+            margin: 0;
+            z-index: 110;
+            pointer-events: none;
+            font-size: 50px;
+            font-weight: bold;
+            color: #3b1b08;
+            white-space: nowrap;
+
+            text-shadow:
+                2px 2px 0 #fff4d6,
+                -2px -2px 0 #fff4d6;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+    <!-- Main Game Container -->
+
+    <div id="game-container">
+
+        <!-- Background -->
+
+        <img
+            id="bg-image"
+            src="RPI.png"
+            alt="Warak Enab Game Setup"
+        >
+
+
+        <!-- FADABLE UI OVERLAYS -->
+
+        <div id="ui-layer" class="fade-ui hidden-ui">
+
+            <!-- Top Left Button: Contact Info -->
+
+            <a href="Comment Section.html" class="ui-btn top-left-btn">
+                <span>معلومات التواصل</span>
+            </a>
+
+
+            <!-- Title -->
+
+            <h1 class="main-title">
+                ورق عنب
+            </h1>
+
+
+            <!-- Recipe Scroll -->
+
+            <div class="scroll-container">
+
+                <div class="scroll-content">
+
+                    <p>ضع الأرز واللحم في الوعاء لخلطهما معًا <br>
+                        عندما تظهر ورقة العنب، ضع الحشوة داخلها<br>
+                        اسحب ورقات العنب الملفوفة وضعها في القدر<br>
+                        بعد وضع جميع حبات ورق العنب، سيبدأ الطبخ<br>
+                        عندما يظهر الطبق النهائي، اضغط عليه لإكمال الوصفة<br>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bottom Right Button: Select Recipe -->
+
+            <a href="Recipe Page.html" class="ui-btn bottom-right-btn">
+                <span>اختر وصفة</span>
+            </a>
+
+        </div>
+
+
+        <!-- ACTIVE GAME AREA -->
+
+        <div id="play-area">
+
+
+            <!-- =========================
+                 STEP 1: RICE + MEAT
+            ========================== -->
+
+            <img
+                id="rice"
+                class="game-object ingredient"
+                src="rice.png"
+                alt="Rice"
+            >
+
+            <img
+                id="meat"
+                class="game-object ingredient"
+                src="meat.png"
+                alt="Meat"
+            >
+
+
+            <!-- Bowl -->
+
+            <img
+                id="bowl"
+                class="game-object"
+                src="bowl.png"
+                alt="Bowl"
+            >
+
+
+            <!-- Mixed Rice + Meat -->
+
+            <img
+                id="mixed-filling"
+                class="game-object"
+                src="mixed-filling.png"
+                alt="Mixed Filling"
+            >
+
+
+            <!-- =========================
+                 STEP 2: GRAPE LEAF
+            ========================== -->
+
+            <img
+                id="leaf"
+                class="game-object"
+                src="leaf.png"
+                alt="Grape Leaf"
+            >
+
+
+            <!-- Rolled Warak Enab -->
+
+            <img
+                id="warakaiah"
+                class="game-object"
+                src="warakaiah.png"
+                alt="Warak Enab"
+            >
+
+
+            <!-- =========================
+                 STEP 3: PAN
+            ========================== -->
+
+            <img
+                id="pan"
+                class="game-object"
+                src="pan.png"
+                alt="Pan"
+            >
+
+
+            <!-- Cooked Pan -->
+
+            <img
+                id="cooked-pan"
+                class="game-object"
+                src="cooked pan.png"
+                alt="Cooked Pan"
+            >
+
+
+            <!-- =========================
+                 STEP 4: FINISHED DISH
+            ========================== -->
+
+            <img
+                id="finished-warak-enab"
+                class="game-object"
+                src="finished warak enab.png"
+                alt="Finished Warak Enab"
+            >
+
+        </div>
+
+
+        <!-- =========================
+             SUCCESS SCREEN
+        ========================== -->
+
+        <div id="success-screen" class="hidden">
+
+            <div class="success-glow">
+
+                <div class="sparkle">
+                    ✦
+                </div>
+
+                <h1>
+                    أحسنت!
+                </h1>
+
+                <h2>
+                    لقد أتقنت هذه الوصفة ✨
+                </h2>
+
+                <div class="sparkles">
+                    ✦　✧　✦　✧　✦
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="warak enab script.js"></script>
+<script>
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+</script>
+</body>
+
+</html>

@@ -1,0 +1,441 @@
+/* =========================
+   GENERAL RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   GAME FRAME
+========================= */
+
+#game-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+#play-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 600px;
+    height: 600px;
+    z-index: 10;
+}
+
+
+/* =========================
+   GAME OBJECTS
+========================= */
+
+.game-object {
+    position: absolute;
+    cursor: grab;
+    z-index: 20;
+}
+
+.game-object:active {
+    cursor: grabbing;
+}
+
+
+/* =========================
+   STEP 1
+   RICE + MEAT + BOWL
+========================= */
+
+#rice {
+    width: 110px;
+    left: 80px;
+    top: 180px;
+}
+
+#meat {
+    width: 110px;
+    left: 80px;
+    top: 320px;
+}
+
+#bowl {
+    width: 230px;
+    left: 300px;
+    top: 210px;
+}
+
+
+/* =========================
+   MIXED FILLING
+========================= */
+
+#mixed-filling {
+    width: 130px;
+    left: 235px;
+    top: 180px;
+}
+
+
+/* =========================
+   STEP 2
+   GRAPE LEAF
+========================= */
+
+#leaf {
+    width: 230px;
+    left: 185px;
+    top: 210px;
+}
+
+
+/* =========================
+   WARAKAIAH
+========================= */
+
+#warakaiah {
+    width: 130px;
+    left: 250px;
+    top: 80px;
+}
+
+
+/* =========================
+   STEP 3
+   PAN
+========================= */
+
+#pan {
+    width: 400px;
+    left: 100px;
+    top: 170px;
+}
+
+
+/* =========================
+   COOKED PAN
+========================= */
+
+#cooked-pan {
+    width: 200px;
+    left: 200px;
+    top: 80px;
+}
+
+
+/* =========================
+   FINISHED WARAK ENAB
+========================= */
+
+#finished-warak-enab {
+    width: 330px;
+    left: 135px;
+    top: 180px;
+}
+
+
+/* =========================
+   HIDDEN GAME OBJECTS
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   EDGE UI
+========================= */
+
+.ui-btn,
+.scroll-container {
+    pointer-events: auto;
+}
+
+.ui-btn {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    pointer-events: auto;
+    color: #000000;
+}
+
+.ui-btn span {
+    display: block;
+    color: #000000;
+}
+
+
+/* =========================
+   UI LAYER
+========================= */
+
+#ui-layer {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+#ui-layer.visible-ui {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================
+   TOP LEFT BUTTON
+========================= */
+
+.top-left-btn {
+    left: 20px;
+    top: 20px;
+    width: 130px;
+    height: 45px;
+
+    background: #fff4d6;
+    border: 3px solid #3b1b08;
+    border-radius: 10px;
+
+    box-shadow:
+        3px 3px 0 rgba(0, 0, 0, 0.35);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================
+   BOTTOM RIGHT BUTTON
+========================= */
+
+.bottom-right-btn {
+    right: 20px;
+    bottom: 20px;
+    width: 130px;
+    height: 45px;
+
+    background: #fff4d6;
+    border: 3px solid #3b1b08;
+    border-radius: 10px;
+
+    box-shadow:
+        3px 3px 0 rgba(0, 0, 0, 0.35);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================
+   RECIPE SCROLL
+========================= */
+
+.scroll-container {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    width: 175px;
+    height: 330px;
+
+    z-index: 105;
+
+    padding: 25px 18px;
+
+    background: #ead7ae;
+
+    border: 5px solid #8b5a2b;
+    border-radius: 12px;
+
+    box-shadow:
+        4px 5px 0 rgba(0, 0, 0, 0.35),
+        inset 0 0 15px rgba(80, 40, 10, 0.2);
+
+    overflow-y: auto;
+
+    direction: rtl;
+    pointer-events: auto;
+}
+
+
+/* =========================
+   RECIPE TEXT
+========================= */
+
+#recipe-scroll h2 {
+    font-size: 19px;
+    color: #3d1d0b;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#recipe-scroll p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4b2a13;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   SUCCESS SCREEN
+========================= */
+
+#success-screen {
+    position: absolute;
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(20, 10, 5, 0.25);
+}
+
+
+/* Hide success screen initially */
+
+#success-screen.hidden {
+    display: none;
+}
+
+
+/* =========================
+   SUCCESS BOX
+========================= */
+
+.success-glow {
+    text-align: center;
+
+    padding: 40px 50px;
+
+    background: rgba(255, 246, 211, 0.95);
+
+    border: 5px solid #d6a84c;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 20px #fff4a8,
+        0 0 45px #ffd95c,
+        0 0 80px rgba(255, 215, 80, 0.7);
+
+    animation: shine 1.2s infinite alternate;
+}
+
+
+/* =========================
+   SUCCESS TEXT
+========================= */
+
+.success-glow h1 {
+    font-size: 52px;
+    color: #8b4d16;
+    margin-bottom: 10px;
+}
+
+.success-glow h2 {
+    font-size: 25px;
+    color: #4b2a13;
+}
+
+
+/* =========================
+   SPARKLES
+========================= */
+
+.sparkle {
+    font-size: 40px;
+    color: #d9a928;
+}
+
+.sparkles {
+    margin-top: 20px;
+    font-size: 25px;
+    color: #d9a928;
+}
+
+
+/* =========================
+   SUCCESS ANIMATION
+========================= */
+
+@keyframes shine {
+
+    from {
+
+        transform: scale(1);
+
+        box-shadow:
+            0 0 20px #fff4a8,
+            0 0 40px #ffd95c;
+    }
+
+    to {
+
+        transform: scale(1.03);
+
+        box-shadow:
+            0 0 30px #fff4a8,
+            0 0 70px #ffd95c,
+            0 0 100px rgba(255, 215, 80, 0.7);
+    }
+}

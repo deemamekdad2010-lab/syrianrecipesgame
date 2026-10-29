@@ -1,0 +1,485 @@
+/* =========================
+   SHESH BARAK - STEP 2
+   ONION + MEAT + OIL
+========================= */
+
+#meat {
+    width: 100px;
+    left: 180px;
+    top: 80px;
+}
+
+#oil {
+    width: 200px;
+    left: 250px;
+    top: 80px;
+}
+
+#pan {
+    width: 450px;
+    left: 100px;
+    top: 150px;
+}
+#knife {
+    width: 200px;
+    left: 400px;
+    top: 150px;
+}
+#onion{
+    width: 250px;
+    left: 200px;
+    top: 200px;
+}
+/* =========================
+   SUCCESS SCREEN
+========================= */
+
+#success-screen {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(20, 10, 5, 0.25);
+}
+
+.success-glow {
+    text-align: center;
+
+    padding: 40px 50px;
+
+    background: rgba(255, 246, 211, 0.95);
+
+    border: 5px solid #d6a84c;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 20px #fff4a8,
+        0 0 45px #ffd95c,
+        0 0 80px rgba(255,215,80,0.7);
+
+    animation: shine 1.2s infinite alternate;
+}
+
+.success-glow h1 {
+    font-size: 52px;
+
+    color: #8b4d16;
+
+    margin-bottom: 10px;
+}
+
+.success-glow h2 {
+    font-size: 25px;
+
+    color: #4b2a13;
+}
+
+.sparkle {
+    font-size: 40px;
+
+    color: #d9a928;
+}
+
+.sparkles {
+    margin-top: 20px;
+
+    font-size: 25px;
+
+    color: #d9a928;
+}
+
+@keyframes shine {
+
+    from {
+        transform: scale(1);
+        box-shadow:
+            0 0 20px #fff4a8,
+            0 0 40px #ffd95c;
+    }
+
+    to {
+        transform: scale(1.03);
+        box-shadow:
+            0 0 30px #fff4a8,
+            0 0 70px #ffd95c,
+            0 0 100px rgba(255,215,80,0.7);
+    }
+
+}
+
+.ui-btn,
+.scroll-container {
+    pointer-events: auto;
+}
+.scroll-container {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 175px;
+    height: 330px;
+    z-index: 105;
+    padding: 25px 18px;
+    background: #ead7ae;
+    border: 5px solid #8b5a2b;
+    border-radius: 12px;
+    box-shadow:
+        4px 5px 0 rgba(0,0,0,0.35),
+        inset 0 0 15px rgba(80,40,10,0.2);
+    overflow-y: auto;
+    direction: rtl;
+    pointer-events: auto;
+}
+.ui-btn {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    pointer-events: auto;
+}
+.top-left-btn {
+    left: 20px;
+    top: 20px;
+    width: 130px;
+    height: 45px;
+    background: #fff4d6;
+    border: 3px solid #3b1b08;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-right-btn {
+    right: 20px;
+    bottom: 20px;
+    width: 130px;
+    height: 45px;
+    background: #fff4d6;
+    border: 3px solid #3b1b08;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ui-btn span {
+    display: block;
+}
+#ui-layer {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#ui-layer.visible-ui {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.ui-btn {
+    color: #000000;
+}
+
+.ui-btn span {
+    color: #000000;
+}
+/* =========================
+   RECIPE SCROLL
+========================= */
+
+
+#recipe-scroll h2 {
+    font-size: 19px;
+
+    color: #3d1d0b;
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+
+#recipe-scroll p {
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: #4b2a13;
+
+    margin-bottom: 12px;
+
+    font-weight: bold;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: #1a1a1a;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   GAME FRAME
+========================= */
+
+#game-container {
+    position: relative;
+
+    width: 600px;
+    height: 600px;
+
+    overflow: hidden;
+
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+#table-bg {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    left: 0;
+    top: 0;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+#play-area {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 600px;
+    height: 600px;
+}
+
+
+/* =========================
+   GENERAL GAME OBJECTS
+========================= */
+
+.game-object,
+.ingredient {
+    position: absolute;
+
+    cursor: grab;
+
+    object-fit: contain;
+
+    z-index: 5;
+
+    transition: transform 0.2s ease;
+}
+
+.game-object:active,
+.ingredient:active {
+    cursor: grabbing;
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+    display: none !important;
+}
+/* Hide Step 2 objects until Step 2 begins */
+
+#meat,
+#oil,
+#pan {
+    display: none;
+}
+#pan-with-stuffing {
+    display: none;
+    width: 180px;
+    left: 250px;
+    top: 130px;
+}
+/* =========================
+   STEP 3 - DOUGH + STUFFING
+========================= */
+
+#stuffing {
+    width: 100px;
+    left: 100px;
+    top: 150px;
+}
+
+#dough1 {
+    width: 100px;
+    left: 300px;
+    top: 150px;
+}
+
+#dough2 {
+    width: 100px;
+    left: 300px;
+    top: 280px;
+}
+
+#dough3 {
+    width: 100px;
+    left: 300px;
+    top: 410px;
+}
+/* Hide Step 3 objects until Step 3 begins */
+
+#stuffing,
+#dough1,
+#dough2,
+#dough3 {
+    display: none;
+}
+/* =========================
+   STEP 4 - SHESH BARAK + YOGURT
+========================= */
+
+#yogurt {
+    display: none;
+    width: 300px;
+    left: 70px;
+    top: 150px;
+}
+
+#cooking-pan {
+    display: none;
+    width: 450px;
+    left: 100px;
+    top: 150px;
+}
+#finished-sheshbarak {
+    display: none;
+    width: 450px;
+    left: 100px;
+    top: 130px;
+    cursor: pointer;
+}
+/* =========================
+   SUCCESS SCREEN
+========================= */
+
+#success-screen {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(20, 10, 5, 0.25);
+}
+
+.success-glow {
+    text-align: center;
+
+    padding: 40px 50px;
+
+    background: rgba(255, 246, 211, 0.95);
+
+    border: 5px solid #d6a84c;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 20px #fff4a8,
+        0 0 45px #ffd95c,
+        0 0 80px rgba(255,215,80,0.7);
+
+    animation: shine 1.2s infinite alternate;
+}
+
+.success-glow h1 {
+    font-size: 52px;
+
+    color: #8b4d16;
+
+    margin-bottom: 10px;
+}
+
+.success-glow h2 {
+    font-size: 25px;
+
+    color: #4b2a13;
+}
+
+.sparkle {
+    font-size: 40px;
+
+    color: #d9a928;
+}
+
+.sparkles {
+    margin-top: 20px;
+
+    font-size: 25px;
+
+    color: #d9a928;
+}
+
+@keyframes shine {
+
+    from {
+        transform: scale(1);
+        box-shadow:
+            0 0 20px #fff4a8,
+            0 0 40px #ffd95c;
+    }
+
+    to {
+        transform: scale(1.03);
+        box-shadow:
+            0 0 30px #fff4a8,
+            0 0 70px #ffd95c,
+            0 0 100px rgba(255,215,80,0.7);
+    }
+
+}

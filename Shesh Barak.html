@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shesh Barak game- شيش برك</title>
+  <link rel="stylesheet" href="shesh barak style.css">
+ <style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    #game-container {
+        width: 600px;
+        height: 600px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+    .main-title {
+    position: absolute;
+    top: 15px;
+    left: 82%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 110;
+    pointer-events: none;
+
+    font-size: 50px;
+    font-weight: bold;
+    color: #3b1b08;
+    white-space: nowrap;
+
+    text-shadow:
+        2px 2px 0 #fff4d6,
+        -2px -2px 0 #fff4d6;
+}
+</style>
+</head>
+<body>
+<audio id="background-music" loop>
+    <source src="George Wassof.mp3" type="audio/mpeg">
+</audio>
+  <!-- Main Game Container -->
+  <div id="game-container">
+    
+    <!-- Background image reference (Replace 'bg.jpg' with your actual image path) -->
+    <img id="bg-image" src="RPI.png" alt="Shesh Barak Game Setup">
+
+    <!-- FADABLE UI OVERLAYS -->
+    <div id="ui-layer" class="fade-ui hidden-ui">
+      
+      <!-- Top Left Button: Contact Info -->
+      <a href="Comment Section.html" class="ui-btn top-left-btn">
+        <!-- You can use button image or styled text -->
+        <span>معلومات التواصل</span>
+      </a>
+
+      <!-- Title Header: محاشي -->
+      <h1 class="main-title">شيش برك</h1>
+
+      <!-- Scroll Element (Bottom Left) -->
+      <div class="scroll-container">
+        <div class="scroll-content">
+          <p>قطّع البصل<br>
+<br>اطهَ البصل واللحم مع الزيت
+قسّم العجينة الكبيرة إلى كرات صغيرة<br>
+<br>افرد كل كرة لتصبح على شكل دائرة
+<br>ضع حشوة اللحم والبصل المطهوة في الداخل
+<br>أغلق دائرة العجين
+<br>ضع القطع الجاهزة واللبن في وعاء الطهي
+<br>انتظر حوالي 30 دقيقة
+تصبح وجبة الشيش برك جاهزة
+</p>
+        </div>
+      </div>
+
+      <!-- Bottom Right Button: Select Recipe -->
+      <a href="Recipe Page.html" class="ui-btn bottom-right-btn">
+        <!-- You can use button image or styled text -->
+        <span>اختر وصفة</span>
+      </a>
+
+    </div>
+
+    <!-- Active Game Canvas / Play Area -->
+    <div id="play-area">
+      <img id="onion" class="ingredient" src="onion.png" alt="Onion">
+      <img id="knife" class="game-object" src="knife.png" alt="Knife">
+      <img id="meat" class="ingredient" src="meat.png" alt="Meat">
+      <img id="oil" class="ingredient" src="oil.png" alt="Oil">
+      <img id="pan" class="game-object" src="pan.png" alt="Pan">
+      <img id="pan-with-stuffing" class="game-object" src="pan with stuffing.png" alt="Pan with stuffing">
+      <img id="stuffing" class="ingredient"
+     src="stuffing.png"
+     alt="Stuffing">
+
+<img id="dough1" class="ingredient"
+     src="dough 1.png"
+     alt="Dough 1">
+
+<img id="dough2" class="ingredient"
+     src="dough 2.png"
+     alt="Dough 2">
+
+<img id="dough3" class="ingredient"
+     src="dough 3.png"
+     alt="Dough 3">
+  <img id="yogurt" class="ingredient"
+     src="yogurt.png"
+     alt="Yogurt">
+
+<img id="cooking-pan" class="game-object"
+     src="cooking pan.png"
+     alt="Cooking Pan">
+<img id="finished-sheshbarak"
+     class="game-object"
+     src="finished shesh barak.png"
+     alt="Finished Shesh Barak">
+    </div>
+  
+ <!-- SUCCESS SCREEN -->
+
+            <div
+                id="success-screen"
+                class="hidden"
+            >
+
+                <div class="success-glow">
+
+                    <div class="sparkle">
+                        ✦
+                    </div>
+
+
+                    <h1>
+                        أحسنت!
+                    </h1>
+
+
+                    <h2>
+                        لقد أتقنت هذه الوصفة ✨
+                    </h2>
+
+
+                    <div class="sparkles">
+                        ✦　✧　✦　✧　✦
+                    </div>
+
+                </div>
+
+            </div>
+  </div>
+
+  <script src="shesh barak script.js"></script>
+  <script>
+    const music = document.getElementById("background-music");
+
+    music.volume = 0.3;
+
+    function startMusic() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("keydown", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+    }
+
+    // Try to start automatically
+    music.play().catch(() => {});
+
+    // If the browser blocks autoplay,
+    // start when the visitor interacts with the page
+    document.addEventListener("click", startMusic);
+    document.addEventListener("keydown", startMusic);
+    document.addEventListener("touchstart", startMusic);
+</script>
+</body>
+</html>
